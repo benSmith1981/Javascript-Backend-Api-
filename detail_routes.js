@@ -8,8 +8,11 @@ module.exports = function(routes) {
 	routes.route('/edithuman/:id?')
 	  .put(detailController.edithuman)
 
-	routes.route('/adddiseaseforhuman/:id?')
-	  .post(detailController.adddiseaseforhuman)
+	routes.route('/adddiseases/:id?')
+	  .put(detailController.adddiseases)
+
+	routes.route('/deletediseases/:id?')
+	  .get(detailController.deletediseases)
 
 	routes.route('/getdiseases/:id?')
 	  .get(detailController.getdiseases)

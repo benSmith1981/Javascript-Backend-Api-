@@ -3,9 +3,9 @@
 var mongoose = require('mongoose');
 
 var DiseaseSchema = new mongoose.Schema({
-    humanID: String, //"1",
-    editInfoID: Number,  //"1"
-    editInfoTimestamp: Number, //12.345,
+    id: String, //"1",
+    editInfoID: String,  //"1"
+    editInfoTimestamp: String, //12.345,
     editInfoField: String, //"nr. 7",
     deleted: Boolean,
     diseaseList: [String], //[ { "id" : 7 }, { "id" : 15 } ],

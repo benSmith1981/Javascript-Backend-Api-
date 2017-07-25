@@ -80,11 +80,33 @@ exports.addOneHuman = function(req, res, err) {
     })
 }
 
-exports.adddiseaseforhuman = function(req, res, err) {
+exports.deletediseases = function(req, res, err) {
+    console.log("delete diseases req.query.id "+ req.query.id)
+
+    DiseaseSchema.remove({ id: req.query.id}, function(err, callback){
+        if (err) {
+                console.log("err "+ err)
+
+            res.json(err)
+        }
+        else {
+                            console.log("callback "+ callback)
+
+            res.json(callback)
+        }
+    })
+
+}
+
+exports.adddiseases = function(req, res, err) {
+    console.log("req.query.id "+ req.query.id)
 
 
-    DiseaseSchema.findOne({humanID: req.query.id}, function (err, human) {
-        if (!human){
+
+    DiseaseSchema.findOne({id: req.query.id}, function (err, human) {
+        if (human == null){
+            console.log("human "+ human)
+
             var diseases = new DiseaseSchema(req.body)
 
             diseases.save(function (err, details) {
@@ -96,19 +118,23 @@ exports.adddiseaseforhuman = function(req, res, err) {
                     res.json({ details })
                 }
             })
-        } else{
-            DiseaseSchema.update({humanID: req.query.id }, 
+        } 
+        else{
+            DiseaseSchema.update({id: req.query.id }, 
                 {$set: req.body }, 
                 {upsert: true}, 
-                function(err, callback){
-                    if (err) 
-                        return res.send(500, { error: err });
-                    return 
-                        res.json(callback);
+            function(err, callback){
+                console.log("callback "+ callback)
+
+                if (err) return res.send(500, { error: err });
+                return res.json(callback);
 
             })
+
         }
     })
+
+
 
 
 }
@@ -118,7 +144,7 @@ exports.getdiseases = function(req, res, err) {
     console.log("req.query.id "+ req.query.id)
 
     //callback is an array
-    DiseaseSchema.find({humanID: req.query.id}, function (err, callback) {
+    DiseaseSchema.find({id: req.query.id}, function (err, callback) {
         if (err) {
             res.json({ err })
             return console.error(err);
