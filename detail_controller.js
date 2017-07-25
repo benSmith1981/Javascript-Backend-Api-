@@ -24,17 +24,21 @@ exports.savetree = function(req, res, err) {
 
         var familyTree = new FamilySchema( currentHuman )
 
-        familyTree.save(function (err, details) {
-            if (err) {
-                res.json({ success:true, err })
-                return console.error(err);
-            }
-            else  {
-                console.log("Details saved "+ details)
+    DetailSchema.find({patientID: familyKey}, function(err, doc){//function (err, callback) {
+        //dont' save if we find an id already stored
+        if (!doc.length){
+            familyTree.save(function (err, details) {
+                if (err) {
+                    res.json({ success:true, err })
+                    return console.error(err);
+                }
+                else  {
+                    console.log("Details saved "+ details)
 
-                // savedHumans.push({ "Saved" : details })
-            }
-        })
+                    // savedHumans.push({ "Saved" : details })
+                }
+            })
+        }
     });
 
     res.json({success:true})
