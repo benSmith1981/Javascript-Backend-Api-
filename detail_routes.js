@@ -6,7 +6,13 @@ module.exports = function(routes) {
 	  .get(detailController.gettree)
 
 	routes.route('/edithuman/:id?')
-	  .post(detailController.edithuman)
+	  .put(detailController.edithuman)
+
+	routes.route('/adddiseaseforhuman/:id?')
+	  .post(detailController.adddiseaseforhuman)
+
+	routes.route('/getdiseases/:id?')
+	  .get(detailController.getdiseases)
 
 	// routes.route('/savetree/:treeid?/:treedata?')
 	routes.route('/savetree/')
