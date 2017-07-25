@@ -25,14 +25,17 @@ app.use(bodyParser.json());
 // connect local or with heroku
 //{ user: "heroku_d1t7ds7m", account: "heroku_d1t7ds7m" }
 //mongodb://<dbuser>:<dbpassword>@ds051868.mlab.com:51868/heroku_d1t7ds7m
-//var uri = 'mongodb://bensmith:testpassword123@ds051868.mlab.com:51868/heroku_d1t7ds7m'
-var uri = 'mongodb://heroku_d1t7ds7m:2u2rc279bb098tf4nk1eunkjbm@ds051868.mlab.com:51868/heroku_d1t7ds7m'
+var uri = 'mongodb://localhost/api/'
+// var uri = 'mongodb://heroku_d1t7ds7m:2u2rc279bb098tf4nk1eunkjbm@ds051868.mlab.com:51868/heroku_d1t7ds7m'
 mongoose.connect(uri , function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
 
-
+// parameters sent with 
+router.delete('/', function(req, res) {
+  //Guesss you can check for parameters here
+});
 // parameters sent with 
 router.post('/', function(req, res) {
   //Guesss you can check for parameters here
