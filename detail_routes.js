@@ -6,22 +6,9 @@ module.exports = function(routes) {
 	  .get(detailController.gettree)
 
 	routes.route('/edithuman/:id?')
-	  .put(detailController.edithuman)
-
-	routes.route('/adddiseases/:id?')
-	  .put(detailController.adddiseases)
-
-	routes.route('/deletediseases/:id?')
-	  .get(detailController.deletediseases)
-
-	routes.route('/getdiseases/:id?')
-	  .get(detailController.getdiseases)
+	  .post(detailController.edithuman)
 
 	// routes.route('/savetree/:treeid?/:treedata?')
 	routes.route('/savetree/')
 	  .post(detailController.savetree)
-
-	  	// routes.route('/savetree/:treeid?/:treedata?')
-	routes.route('/deletetree/:patientID?')
-	  .get(detailController.deletetree)
 }
