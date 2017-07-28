@@ -22,18 +22,16 @@ exports.addpatientsid = function(req, res, err) {
     })
 }
 
-// Create endpoint  to get tree json 
+// Create endpoint  to register user
 exports.register = function(req, res, err) {
     console.log("req.query.username"+ req.body.username)
     console.log("req.query.password "+ req.body.password)
-    console.log("req.query.id"+ req.body.id)
-    console.log("req.query.patientID "+ req.body.familyTreeID)
 
     var login = new LoginSchema({  
         username: req.body.username,
         password: req.body.password,
-        familyTreeID: req.body.familyTreeID,
-        id: req.body.id
+        familyTreeID: "",
+        id: ""
     })
     //callback is an array
     LoginSchema.find({username: req.body.username}, function(err, doc){ //function (err, callback) {
@@ -45,39 +43,6 @@ exports.register = function(req, res, err) {
                 }
                 else  {
                     res.json({ p })
-                }
-            })
-        } else {
-            res.json({success: false, message:"Username used"})
-        }
-    })
-
-
-}
-
-// Create endpoint  to get tree json 
-exports.register = function(req, res, err) {
-    console.log("req.query.username"+ req.body.username)
-    console.log("req.query.password "+ req.body.password)
-    console.log("req.query.id"+ req.body.id)
-    console.log("req.query.patientID "+ req.body.familyTreeID)
-
-    var login = new LoginSchema({  
-        username: req.body.username,
-        password: req.body.password,
-        familyTreeID: req.body.familyTreeID,
-        id: req.body.id
-    })
-    //callback is an array
-    LoginSchema.find({username: req.body.username}, function(err, doc){ //function (err, callback) {
-        if (!doc.length){
-            login.save(function (err, details) {
-                if (err) {
-                    res.json({ err })
-                    return console.error(err);
-                }
-                else  {
-                    res.json({ details })
                 }
             })
         } else {
