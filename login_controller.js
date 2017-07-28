@@ -42,7 +42,7 @@ exports.register = function(req, res, err) {
                     return console.error(err);
                 }
                 else  {
-                    res.json({ p })
+                    res.json({ details})
                 }
             })
         } else {
