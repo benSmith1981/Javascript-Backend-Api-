@@ -7,6 +7,7 @@ exports.verifymember = function(req, res, err) {
     var familyTreeID = req.body.patientID
     var userID = req.body.userID
     var passwordCode = generateCode()
+    var sendersEmail = req.body.sendersEmail
     var name = req.body.name
     var patientname = req.body.patientname
 
@@ -28,8 +29,8 @@ exports.verifymember = function(req, res, err) {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: "👻 <"+email+">", // sender address
-        to: "<"+groupTestEmails+">", // list of receivers
+        from: "👻 <"+sendersEmail+">", // sender address
+        to: "<"+email+">", // list of receivers
         subject: 'Family requesting your help!', // Subject line
         text: '%s', emailTextDutch,
         html: '<b>'+emailTextDutch+'</b>'  // html body
