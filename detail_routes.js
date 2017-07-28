@@ -11,7 +11,7 @@ module.exports = function(routes) {
 	routes.route('/login/')
 	  .post(loginController.login)
 	routes.route('/addpatientsid/')
-	  .put(loginController.addpatientsid)
+	  .put(loginController.addPatientsid)
 
 //SAVING AND EDITING TREE
 	routes.route('/gettree/:patientID?')
