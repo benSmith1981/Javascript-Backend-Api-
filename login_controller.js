@@ -1,4 +1,5 @@
 const LoginSchema = require('./login_model')
+const FamilySchema = require('./tree_model')
 'use strict';
 const nodemailer = require('nodemailer');
 
