@@ -87,14 +87,12 @@ exports.addpatientsid = function(req, res, err) {
 exports.register = function(req, res, err) {
     console.log("req.query.username"+ req.body.username)
     console.log("req.query.password "+ req.body.password)
-    console.log("req.query.id"+ req.body.id)
-    console.log("req.query.patientID "+ req.body.familyTreeID)
 
     var login = new LoginSchema({  
         username: req.body.username,
         password: req.body.password,
-        familyTreeID: req.body.familyTreeID,
-        id: req.body.id
+        familyTreeID: "",
+        id: ""
     })
     //callback is an array
     LoginSchema.find({username: req.body.username}, function(err, doc){ //function (err, callback) {
