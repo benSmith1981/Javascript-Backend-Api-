@@ -75,12 +75,16 @@ function generateCode(){
 }
 
 exports.addpatientsid = function(req, res, err) {
-    LoginSchema.update({id: req.body.username }, 
+    LoginSchema.updateOne({id: req.body.username }, 
         {$set: {familyTreeID:req.body.patientID, id: req.body.patientID} }, 
         {upsert: true}, 
         function(err, callback){
-            if (err) return res.send(500, { error: err });
-            return res.json(callback);
+            console.log("callback.id " + callback.id)
+                        console.log("req.body.patientID" + req.body.patientID)
+                        console.log("eq.body.username" + req.body.username)
+
+            if (err) return res.send(500, { success: false, message: err });
+            return res.json({success: true, message:"Updated"});
 
     })
 }
@@ -101,11 +105,11 @@ exports.register = function(req, res, err) {
         if (!doc.length){
             login.save(function (err, details) {
                 if (err) {
-                    res.json({ err })
+                    res.json({ success: false, message: err })
                     return console.error(err);
                 }
                 else  {
-                    res.json({ details })
+                    res.json({ details , success: true, message:"Registered" })
                 }
             })
         } else {
@@ -138,10 +142,10 @@ exports.login = function(req, res, err) {
 
                 FamilySchema.find({patientID: callback.familyTreeID}, function (err, callback) {
                     if (err) {
-                        res.json({ err })
+                        res.json({success: false, message:"Username used: "+err})
                         return console.error(err);
                     } else {
-                        res.json({userID: userID, familyTree: callback})
+                        res.json({userID: userID, familyTree: callback, success: true, message:"Logging in"})
                     }
                 })
         }
