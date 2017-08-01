@@ -48,7 +48,7 @@ exports.verifymember = function(req, res, err) {
         patientID: patientID,
         id: userID
     })
-    LoginSchema.find({username: req.body.email}, function(err, doc){ //function (err, callback) {
+    LoginSchema.find({username: email}, function(err, doc){ //function (err, callback) {
         if (!doc.length){
             login.save(function (err, details) {
                 if (err) {
