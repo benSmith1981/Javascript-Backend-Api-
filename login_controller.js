@@ -12,8 +12,9 @@ exports.verifymember = function(req, res, err) {
 
     var patientID = req.body.patientID
     var userID = req.body.userID
-    var passwordCode = generateCode()
+    var passwordCode = req.body.code
 
+    var emailText = req.body.emailText
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -36,8 +37,8 @@ exports.verifymember = function(req, res, err) {
         from: "👻 <"+sendersEmail+">", // sender address
         to: "<"+email+">", // list of receivers
         subject: 'Family requesting your help!', // Subject line
-        text: '%s', emailTextDutch,
-        html: '<b>'+emailTextDutch+'</b>'  // html body
+        text: '%s', emailText,
+        html: '<b>'+emailText+'</b>'  // html body
     };
 
 
