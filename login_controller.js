@@ -59,7 +59,7 @@ exports.verifymember = function(req, res, err) {
                     return console.error(err);
                 }
                 else  {
-                    res.json({ details: details, success: false, message:"Username used" })
+                    res.json({ details: details, success: true, message:"Verification Email Send" })
                 }
             })
         } else {
