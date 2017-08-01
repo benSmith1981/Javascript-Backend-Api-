@@ -36,13 +36,7 @@ exports.verifymember = function(req, res, err) {
         text: '%s', emailTextDutch,
         html: '<b>'+emailTextDutch+'</b>'  // html body
     };
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return res.send({success: false , message: error});
-        }
-        res.send({success: true, message:"Message "+ info.messageId +" sent: %s" + info.response});
-    });
+
 
     //create new user with these details, so they can login
     var login = new LoginSchema({  
@@ -59,6 +53,13 @@ exports.verifymember = function(req, res, err) {
                     return console.error(err);
                 }
                 else  {
+                        // send mail with defined transport object
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return res.send({success: false , message: error});
+                        }
+                        res.send({success: true, message:"Message "+ info.messageId +" sent: %s" + info.response});
+                    });
                     res.json({ details: details, success: true, message:"Verification Email Send" })
                 }
             })
