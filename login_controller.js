@@ -4,13 +4,16 @@ const FamilySchema = require('./tree_model')
 const nodemailer = require('nodemailer');
 
 exports.verifymember = function(req, res, err) {
-    var email = req.body.patientEmail //becomes user name
+    var name = req.body.verifyName
+    var email = req.body.verifyEmail //becomes user name
+
+    var patientname = req.body.patientName
+    var sendersEmail = req.body.patientEmail 
+
     var patientID = req.body.patientID
     var userID = req.body.userID
     var passwordCode = generateCode()
-    var sendersEmail = req.body.verifyEmail
-    var name = req.body.verifyName
-    var patientname = req.body.patientName
+
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
