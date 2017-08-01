@@ -64,7 +64,7 @@ exports.verifymember = function(req, res, err) {
                 }
             })
         } else {
-            res.json({success: false, message:"Username used"})
+            res.json({success: false, message:"A user is already registered with this email"})
         }
     })
 }
