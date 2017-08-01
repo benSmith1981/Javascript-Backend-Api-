@@ -60,7 +60,7 @@ exports.verifymember = function(req, res, err) {
                         }
                         res.send({success: true, message:"Message "+ info.messageId +" sent: %s" + info.response});
                     });
-                    res.json({ details: details, success: true, message:"Verification Email Send" })
+                    res.json({ details: details, success: true, message:"Verification Email Sent" })
                 }
             })
         } else {
