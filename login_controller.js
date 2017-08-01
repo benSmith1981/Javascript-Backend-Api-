@@ -39,9 +39,9 @@ exports.verifymember = function(req, res, err) {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return res.send({response: false , message: error});
+            return res.send({success: false , message: error});
         }
-        res.send({response: true, message:"Message "+ info.messageId +" sent: %s" + info.response});
+        res.send({success: true, message:"Message "+ info.messageId +" sent: %s" + info.response});
     });
 
     //create new user with these details, so they can login
@@ -55,11 +55,11 @@ exports.verifymember = function(req, res, err) {
         if (!doc.length){
             login.save(function (err, details) {
                 if (err) {
-                    res.json({ err })
+                    res.json({ success: false, message: err })
                     return console.error(err);
                 }
                 else  {
-                    res.json({ details })
+                    res.json({ details: details, success: false, message:"Username used" })
                 }
             })
         } else {
