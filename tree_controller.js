@@ -110,7 +110,7 @@ exports.gettree = function(req, res, err) {
             res.json({ err })
             return console.error({success: false, message: err});
         } else {
-            res.json({familyTree: callback, success: true, message:"Logging in"})
+            res.json({userID: userID, patientID: patientID, familyTree: callback, success: true, message:"Logging in"})
         }
     })
 
